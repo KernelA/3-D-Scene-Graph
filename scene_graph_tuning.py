@@ -82,11 +82,14 @@ imgLoader = testImageLoader(args)
 # Initial Sort tracker
 interpreter = interpret.interpreter(args, test_set, ENABLE_TRACKING=False)
 scene_graph = vis_tuning.scene_graph(args)
+
+depth_intrinsics = np.array(imgLoader.intrinsic_color).astype(np.float)
+
 keyframe_extractor = keyframe_checker(args,
                                       thresh_key=args.thres_key,
                                       thresh_anchor=args.thres_anchor,
                                       max_group_len=args.max_group_len,
-                                      intrinsic_depth=imgLoader.intrinsic_color,
+                                      intrinsic_depth=depth_intrinsics,
                                       alpha=args.alpha,
                                       blurry_gain=args.gain,
                                       blurry_offset=args.offset,
