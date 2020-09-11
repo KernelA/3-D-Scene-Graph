@@ -18,7 +18,19 @@ from collections import Counter
 import pcl
 import os.path as osp
 import os
-fasttext = torchtext.vocab.FastText()
+from torchtext.vocab import Vectors
+
+class CustomFastText(Vectors):
+
+    url_base = 'https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.{}.vec'
+
+    def __init__(self, language="en", **kwargs):
+        url = self.url_base.format(language)
+        name = os.path.basename(url)
+        super(CustomFastText, self).__init__(name, url=url, **kwargs)
+
+fasttext = CustomFastText()
+
 _GRAY = (218, 227, 218)
 _GREEN = (18, 127, 15)
 _WHITE = (255, 255, 255)
