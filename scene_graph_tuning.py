@@ -179,7 +179,7 @@ for idx in range(imgLoader.num_frames)[args.frame_start:args.frame_end]:
         scene_name = args.scannet_path.split('/')[-1]
         try: os.makedirs(osp.join(args.vis_result_path, scene_name,'original'))
         except: pass
-        try: os.makedirs(osp.j oin(args.vis_result_path, scene_name,'detection'))
+        try: os.makedirs(osp.join(args.vis_result_path, scene_name,'detection'))
         except: pass
         cv2.imwrite(osp.join(args.vis_result_path, scene_name,'original',str(idx) + '.jpg'), image_scene)
         cv2.imwrite(osp.join(args.vis_result_path, scene_name,'detection',str(idx) + '.jpg'), img_obj_detected)
